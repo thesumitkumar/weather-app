@@ -7,7 +7,7 @@
 </p>
 <p align="center"><a href="https://github.com/thesumitkumar/weather-app/releases"> <img width="100px" src="./meta/download.png"> </a>
 <br>
-<a href="https://github.com/thesumitkumar/weather-app" alt="GitHub release"><img width="80px" src="https://img.shields.io/badge/version-0.1.0-blue.svg" ></a>
+<a href="https://github.com/thesumitkumar/weather-app" alt="GitHub release"><img width="80px" src="" ></a>
 </p>
 
 ## Screenshot 

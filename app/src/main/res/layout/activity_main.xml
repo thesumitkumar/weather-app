@@ -331,9 +331,10 @@
                         android:layout_height="wrap_content"
                         android:text="@string/created_by_sumit"
                         android:textAlignment="center"
-                        android:textColorLink="#FF657985"
-                        android:textSize="14dp"
-                        android:textStyle="normal" />
+                        android:textColorLink="#FF018786"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
+                        android:layout_margin="6dp"/>
 
                 </LinearLayout>
             </LinearLayout>

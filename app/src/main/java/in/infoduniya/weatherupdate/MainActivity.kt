@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 binding.updatedAt.text = updatedAtText
                 binding.status.text = weatherDescription
                 if (weatherDescription.indexOf("CLOUD")!=-1) {
-                    binding.weatherImg.setImageResource(R.drawable.cloudssplash)
+                    binding.weatherImg.setImageResource(R.drawable.cloudy)
                 } else if (weatherDescription.indexOf("SNOW")!=-1) {
                     binding.weatherImg.setImageResource(R.drawable.snowy)
                 } else if (weatherDescription.indexOf("STORM")!=-1 || weatherDescription.indexOf("TUNDER")!=-1) {
