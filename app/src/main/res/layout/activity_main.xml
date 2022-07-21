@@ -24,10 +24,12 @@
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:autofillHints="postalAddress"
                 android:background="#fff"
+                android:hint="Kolkata"
                 android:inputType="textWebEditText"
                 android:maxLines="1"
-                android:text="Kolkata"
+                android:minHeight="48dp"
                 android:textAllCaps="true"
                 android:textSize="24sp" />
 
@@ -35,9 +37,17 @@
                 android:id="@+id/updated_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20 April 2012, 20:08 PM"
+                android:hint="20 April 2012, 20:08 PM"
                 android:textAlignment="center"
                 android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/weatherImg"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/sun" />
+
         </LinearLayout>
 
 
@@ -316,6 +326,7 @@
                         android:layout_height="5dp" />
 
                     <TextView
+                        android:id="@+id/creatorTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/created_by_sumit"
