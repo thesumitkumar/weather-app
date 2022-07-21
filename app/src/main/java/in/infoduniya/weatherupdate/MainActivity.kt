@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
                 val updatedAt: Long = jsonObj.getLong("dt")
                 val updatedAtText =
-                    "Updated at: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                    "Last Updated\n" + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
                         Date(updatedAt * 1000)
                     )
                 val temp = main.getString("temp") + "°C"
@@ -75,7 +75,8 @@ class MainActivity : AppCompatActivity() {
                 val windSpeed = wind.getString("speed")
                 val weatherDescription = weather.getString("description")
 
-                val address = jsonObj.getString("name") + ", " + sys.getString("country")
+//                val address = jsonObj.getString("name") + ", " + sys.getString("country")
+                val address = jsonObj.getString("name")
 
                 /* Populating extracted data into our views */
                 binding.address.setText(address.uppercase())

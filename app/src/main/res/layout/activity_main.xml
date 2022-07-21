@@ -25,9 +25,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#fff"
-                android:text="DHAKA, BD"
                 android:inputType="textWebEditText"
                 android:maxLines="1"
+                android:text="Kolkata"
                 android:textAllCaps="true"
                 android:textSize="24sp" />
 
@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20 April 2012, 20:08 PM"
+                android:textAlignment="center"
                 android:textSize="14sp" />
         </LinearLayout>
 
