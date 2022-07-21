@@ -3,9 +3,8 @@ package `in`.infoduniya.weatherupdate
 import `in`.infoduniya.weatherupdate.databinding.ActivityMainBinding
 import android.os.AsyncTask
 import android.os.Bundle
-import android.view.KeyEvent
+import android.text.method.LinkMovementMethod
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.net.URL
@@ -14,7 +13,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    val CITY: String = "Dhanbad"
+    val CITY: String = "Haldia"
     val API: String = "441e9d684c6e8ea623b853e437b5ac4f"
 
     private lateinit var binding: ActivityMainBinding
@@ -24,8 +23,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         weatherTask().execute()
-    }
 
+        binding.creatorTV.movementMethod = LinkMovementMethod.getInstance()
+    }
 
     inner class weatherTask() : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
@@ -61,7 +61,10 @@ class MainActivity : AppCompatActivity() {
 
                 val updatedAt: Long = jsonObj.getLong("dt")
                 val updatedAtText =
-                    "Last Updated\n" + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                    "Last Updated\n" + SimpleDateFormat(
+                        "dd/MM/yyyy hh:mm a",
+                        Locale.ENGLISH
+                    ).format(
                         Date(updatedAt * 1000)
                     )
                 val temp = main.getString("temp") + "°C"
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 val sunrise: Long = sys.getLong("sunrise")
                 val sunset: Long = sys.getLong("sunset")
                 val windSpeed = wind.getString("speed")
-                val weatherDescription = weather.getString("description")
+                val weatherDescription = weather.getString("description").uppercase()
 
 //                val address = jsonObj.getString("name") + ", " + sys.getString("country")
                 val address = jsonObj.getString("name")
@@ -81,7 +84,20 @@ class MainActivity : AppCompatActivity() {
                 /* Populating extracted data into our views */
                 binding.address.setText(address.uppercase())
                 binding.updatedAt.text = updatedAtText
-                binding.status.text = weatherDescription.uppercase()
+                binding.status.text = weatherDescription
+                if (weatherDescription.indexOf("CLOUD")!=-1) {
+                    binding.weatherImg.setImageResource(R.drawable.cloudy)
+                } else if (weatherDescription.indexOf("SNOW")!=-1) {
+                    binding.weatherImg.setImageResource(R.drawable.snowy)
+                } else if (weatherDescription.indexOf("STORM")!=-1 || weatherDescription.indexOf("TUNDER")!=-1) {
+                    binding.weatherImg.setImageResource(R.drawable.thunderstorm)
+                } else if (weatherDescription.indexOf("WIND")!=-1) {
+                    binding.weatherImg.setImageResource(R.drawable.wind)
+                } else if (weatherDescription.indexOf("RAIN")!=-1) {
+                    binding.weatherImg.setImageResource(R.drawable.rainy)
+                } else {
+                    binding.weatherImg.setImageResource(R.drawable.sun)
+                }
                 binding.temp.text = temp
                 binding.tempMin.text = tempMin
                 binding.tempMax.text = tempMax
