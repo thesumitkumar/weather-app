@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Weather Update</string>
+    <string name="created_by_sumit"> <a href="https://github.com/subrotokumar/weather-app.git">Created by\nSumit Kumar</a> </string>
 </resources>

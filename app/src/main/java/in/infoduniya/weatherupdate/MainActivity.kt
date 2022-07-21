@@ -2,19 +2,19 @@ package `in`.infoduniya.weatherupdate
 
 import `in`.infoduniya.weatherupdate.databinding.ActivityMainBinding
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
-    val CITY: String = "Haldia, IN"
+    val CITY: String = "Dhanbad"
     val API: String = "441e9d684c6e8ea623b853e437b5ac4f"
 
     private lateinit var binding: ActivityMainBinding
@@ -26,16 +26,13 @@ class MainActivity : AppCompatActivity() {
         weatherTask().execute()
     }
 
+
     inner class weatherTask() : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
-            findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.GONE
-            findViewById<TextView>(R.id.errorText).visibility = View.GONE
-//
-//            binding.loader.visibility = View.VISIBLE
-//            binding.mainContainer.visibility = View.GONE
-//            binding.errorText.visibility = View.GONE
+            binding.loader.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.GONE
+            binding.errorText.visibility = View.GONE
 
         }
 
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
                 val updatedAt: Long = jsonObj.getLong("dt")
                 val updatedAtText =
-                    "Updated at: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                    "Last Updated\n" + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
                         Date(updatedAt * 1000)
                     )
                 val temp = main.getString("temp") + "°C"
@@ -78,30 +75,30 @@ class MainActivity : AppCompatActivity() {
                 val windSpeed = wind.getString("speed")
                 val weatherDescription = weather.getString("description")
 
-                val address = jsonObj.getString("name") + ", " + sys.getString("country")
+//                val address = jsonObj.getString("name") + ", " + sys.getString("country")
+                val address = jsonObj.getString("name")
 
                 /* Populating extracted data into our views */
-                findViewById<TextView>(R.id.address).text = address
-                findViewById<TextView>(R.id.updated_at).text = updatedAtText
-                findViewById<TextView>(R.id.status).text = weatherDescription.capitalize()
-                findViewById<TextView>(R.id.temp).text = temp
-                findViewById<TextView>(R.id.temp_min).text = tempMin
-                findViewById<TextView>(R.id.temp_max).text = tempMax
-                findViewById<TextView>(R.id.sunrise).text =
+                binding.address.setText(address.uppercase())
+                binding.updatedAt.text = updatedAtText
+                binding.status.text = weatherDescription.uppercase()
+                binding.temp.text = temp
+                binding.tempMin.text = tempMin
+                binding.tempMax.text = tempMax
+                binding.sunrise.text =
                     SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise * 1000))
-                findViewById<TextView>(R.id.sunset).text =
+                binding.sunset.text =
                     SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset * 1000))
-                findViewById<TextView>(R.id.wind).text = windSpeed
-                findViewById<TextView>(R.id.pressure).text = pressure
-                findViewById<TextView>(R.id.humidity).text = humidity
+                binding.wind.text = windSpeed
+                binding.pressure.text = pressure
+                binding.humidity.text = humidity
 
-                /* Views populated, Hiding the loader, Showing the main design */
-                findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
-                findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.VISIBLE
+                binding.loader.visibility = View.GONE
+                binding.mainContainer.visibility = View.VISIBLE
 
             } catch (e: Exception) {
-                findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
-                findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
+                binding.loader.visibility = View.GONE
+                binding.errorText.visibility = View.VISIBLE
             }
 
         }
