@@ -7,14 +7,14 @@
 </p>
 <p align="center"><a href="https://github.com/thesumitkumar/weather-app/releases"> <img width="100px" src="./meta/download.png"> </a>
 <br>
-<a href="https://github.com/thesumitkumar/weather-app" alt="GitHub release"><img width="80px" src="" ></a>
+<a href="https://github.com/thesumitkumar/weather-app" alt="GitHub release"><img width="80px" src="https://img.shields.io/badge/version-0.1.1-blue.svg" ></a>
 </p>
 
 ## Screenshot 
 <p align="center">
 <img src="./meta/screenshot1.jpg" height="400" margin="100px">
 <div width="20px">
-<img src="./meta/screenshot2.jpg" height="400" margin="100px">
+<img src="./meta/Screenshot2.jpg" height="400" margin="100px">
 </p>
 
 ## Features
